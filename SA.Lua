@@ -39,7 +39,7 @@ local BackgroundImage = Instance.new("ImageLabel")
 BackgroundImage.Name = "FireBackground"
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
 BackgroundImage.BackgroundTransparency = 1
-BackgroundImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=128231336801420"
+BackgroundImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=121009920200905"
 BackgroundImage.ScaleType = Enum.ScaleType.Crop
 BackgroundImage.ZIndex = 1
 BackgroundImage.Parent = Main
@@ -50,7 +50,7 @@ CenterImage.Name = "CenterImage"
 CenterImage.Size = UDim2.fromOffset(140, 140)
 CenterImage.Position = UDim2.new(0.5, -70, 0.5, -85)
 CenterImage.BackgroundTransparency = 1
-CenterImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=115099759490553"
+CenterImage.Image = "rbxassetid://"
 CenterImage.ScaleType = Enum.ScaleType.Fit
 CenterImage.ZIndex = 2
 CenterImage.Parent = Main
@@ -109,7 +109,7 @@ ActionButton.AnchorPoint = Vector2.new(0.5, 0.5)
 ActionButton.Position = UDim2.new(0.5, 0, 0.5, 43)
 ActionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ActionButton.BorderSizePixel = 0
-ActionButton.Image = "rbxthumb://type=Asset&w=420&h=420&id=128231336801420"
+ActionButton.Image = "rbxthumb://type=Asset&w=420&h=420&id=127761301065065"
 ActionButton.ScaleType = Enum.ScaleType.Crop
 ActionButton.AutoButtonColor = false
 ActionButton.ZIndex = 15
@@ -134,7 +134,7 @@ Toggle.AnchorPoint = Vector2.new(0.5, 0.5)
 Toggle.Position = UDim2.new(1, -30, 0.5, -10)
 Toggle.BackgroundTransparency = 1
 Toggle.BorderSizePixel = 0
-Toggle.Image = "rbxthumb://type=Asset&w=420&h=420&id=133828656514275"
+Toggle.Image = "rbxthumb://type=Asset&w=420&h=420&id=90595100569140"
 Toggle.ScaleType = Enum.ScaleType.Crop
 Toggle.Visible = false
 Toggle.ZIndex = 20
