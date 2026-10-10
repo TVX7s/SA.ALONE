@@ -144,7 +144,7 @@ Corner(Toggle, 22.5)
 local function PlaySound()
     pcall(function()
         local S = Instance.new("Sound")
-        S.SoundId = "rbxassetid://4590657391"
+        S.SoundId = "rbxassetid://102936990343624"
         S.Volume = 1
         S.Parent = SoundService
         S:Play()
