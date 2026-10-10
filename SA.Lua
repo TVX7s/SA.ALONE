@@ -82,8 +82,8 @@ Corner(Minimize, 8)
 
 local Logo = Instance.new("ImageLabel")
 Logo.Name = "Logo"
-Logo.Size = UDim2.fromOffset(200, 60)
-Logo.Position = UDim2.new(0.5, -100, 0, 6)
+Logo.Size = UDim2.fromOffset(300, 90)
+Logo.Position = UDim2.new(0.5, -150, 0, 6)
 Logo.BackgroundTransparency = 1
 Logo.Image = "rbxthumb://type=Asset&w=420&h=420&id=106392588203843"
 Logo.ScaleType = Enum.ScaleType.Fit
