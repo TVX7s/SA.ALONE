@@ -2,8 +2,10 @@ local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
 
-local Player = Players.LocalPlayer
+local LocalPlayer = Players.LocalPlayer
 
 local Old = CoreGui:FindFirstChild("TVX_UI")
 if Old then
@@ -25,8 +27,8 @@ end
 
 local Main = Instance.new("Frame")
 Main.Name = "Main"
-Main.Size = UDim2.fromOffset(220, 270)
-Main.Position = UDim2.new(0.5, -110, 0.5, -135)
+Main.Size = UDim2.fromOffset(240, 290)
+Main.Position = UDim2.new(0.5, -120, 0.5, -145)
 Main.BackgroundColor3 = Color3.fromRGB(5, 5, 5)
 Main.BorderSizePixel = 0
 Main.ClipsDescendants = true
@@ -42,6 +44,16 @@ BackgroundImage.ScaleType = Enum.ScaleType.Crop
 BackgroundImage.ZIndex = 1
 BackgroundImage.Parent = Main
 Corner(BackgroundImage, 22)
+
+local CenterImage = Instance.new("ImageLabel")
+CenterImage.Name = "CenterImage"
+CenterImage.Size = UDim2.fromOffset(140, 140)
+CenterImage.Position = UDim2.new(0.5, -70, 0.5, -85)
+CenterImage.BackgroundTransparency = 1
+CenterImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=115099759490553"
+CenterImage.ScaleType = Enum.ScaleType.Fit
+CenterImage.ZIndex = 2
+CenterImage.Parent = Main
 
 local Top = Instance.new("Frame")
 Top.Name = "TopBar"
@@ -90,6 +102,31 @@ Logo.ScaleType = Enum.ScaleType.Fit
 Logo.ZIndex = 11
 Logo.Parent = Top
 
+local ActionButton = Instance.new("ImageButton")
+ActionButton.Name = "ActionButton"
+ActionButton.Size = UDim2.fromOffset(190, 58)
+ActionButton.AnchorPoint = Vector2.new(0.5, 0.5)
+ActionButton.Position = UDim2.new(0.5, 0, 0.5, 43)
+ActionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ActionButton.BorderSizePixel = 0
+ActionButton.Image = "rbxthumb://type=Asset&w=420&h=420&id=128231336801420"
+ActionButton.ScaleType = Enum.ScaleType.Crop
+ActionButton.AutoButtonColor = false
+ActionButton.ZIndex = 15
+ActionButton.Parent = Main
+Corner(ActionButton, 14)
+
+local ButtonTitle = Instance.new("ImageLabel")
+ButtonTitle.Name = "ButtonTitle"
+ButtonTitle.Size = UDim2.new(1, -8, 1, -6)
+ButtonTitle.AnchorPoint = Vector2.new(0.5, 0.5)
+ButtonTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
+ButtonTitle.BackgroundTransparency = 1
+ButtonTitle.Image = "rbxthumb://type=Asset&w=420&h=420&id=85925198534817"
+ButtonTitle.ScaleType = Enum.ScaleType.Stretch
+ButtonTitle.ZIndex = 16
+ButtonTitle.Parent = ActionButton
+
 local Toggle = Instance.new("ImageButton")
 Toggle.Name = "Toggle"
 Toggle.Size = UDim2.fromOffset(45, 45)
@@ -104,45 +141,62 @@ Toggle.ZIndex = 20
 Toggle.Parent = Gui
 Corner(Toggle, 22.5)
 
-local function SmoothShow()
-    Main.Visible = true
-    Main.Size = UDim2.fromOffset(190, 230)
-    Main.Position = UDim2.new(0.5, -95, 0.5, -115)
-
-    TweenService:Create(
-        Main,
-        TweenInfo.new(0.38, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
-        {
-            Size = UDim2.fromOffset(220, 270),
-            Position = UDim2.new(0.5, -110, 0.5, -135)
-        }
-    ):Play()
-
-    Toggle.Visible = false
+local function PlaySound()
+    pcall(function()
+        local S = Instance.new("Sound")
+        S.SoundId = "rbxassetid://4590657391"
+        S.Volume = 1
+        S.Parent = SoundService
+        S:Play()
+        S.Ended:Connect(function()
+            S:Destroy()
+        end)
+    end)
+    pcall(function()
+        local S2 = Instance.new("Sound")
+        S2.SoundId = "https://files.catbox.moe/hiwbwp.mp3"
+        S2.Volume = 1
+        S2.Parent = SoundService
+        S2:Play()
+        S2.Ended:Connect(function()
+            S2:Destroy()
+        end)
+    end)
 end
 
-Minimize.Activated:Connect(function()
-    local T = TweenService:Create(
-        Main,
-        TweenInfo.new(0.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-        {
-            Size = UDim2.fromOffset(0, 0),
-            Position = UDim2.new(0.5, 110, 0.5, 135)
-        }
-    )
+local AntiRagdollEnabled = false
 
-    T:Play()
-    T.Completed:Once(function()
-        Main.Visible = false
-        Main.Size = UDim2.fromOffset(220, 270)
-        Main.Position = UDim2.new(0.5, -110, 0.5, -135)
-        Toggle.Visible = true
+ActionButton.Activated:Connect(function()
+    PlaySound()
+    AntiRagdollEnabled = not AntiRagdollEnabled
+    
+    if AntiRagdollEnabled then
+        BackgroundImage.ImageColor3 = Color3.fromRGB(255, 40, 40)
+        ActionButton.ImageColor3 = Color3.fromRGB(255, 40, 40)
+    else
+        BackgroundImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+        ActionButton.ImageColor3 = Color3.fromRGB(255, 255, 255)
+    end
+    
+    local pulseTween1 = TweenService:Create(
+        ActionButton,
+        TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {Size = UDim2.fromOffset(204, 64)}
+    )
+    local pulseTween2 = TweenService:Create(
+        ActionButton,
+        TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+        {Size = UDim2.fromOffset(190, 58)}
+    )
+    
+    pulseTween1:Play()
+    pulseTween1.Completed:Once(function()
+        pulseTween2:Play()
     end)
 end)
 
-Toggle.Activated:Connect(SmoothShow)
-
 Close.Activated:Connect(function()
+    PlaySound()
     local T = TweenService:Create(
         Main,
         TweenInfo.new(0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
@@ -158,9 +212,63 @@ Close.Activated:Connect(function()
     end)
 end)
 
+Minimize.Activated:Connect(function()
+    PlaySound()
+    local T = TweenService:Create(
+        Main,
+        TweenInfo.new(0.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+        {
+            Size = UDim2.fromOffset(0, 0),
+            Position = UDim2.new(0.5, 120, 0.5, 145)
+        }
+    )
+
+    T:Play()
+    T.Completed:Once(function()
+        Main.Visible = false
+        Main.Size = UDim2.fromOffset(240, 290)
+        Main.Position = UDim2.new(0.5, -120, 0.5, -145)
+        Toggle.Visible = true
+    end)
+end)
+
+local function SmoothShow()
+    PlaySound()
+    Main.Visible = true
+    Main.Size = UDim2.fromOffset(200, 240)
+    Main.Position = UDim2.new(0.5, -100, 0.5, -120)
+
+    TweenService:Create(
+        Main,
+        TweenInfo.new(0.38, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+        {
+            Size = UDim2.fromOffset(240, 290),
+            Position = UDim2.new(0.5, -120, 0.5, -145)
+        }
+    ):Play()
+
+    Toggle.Visible = false
+end
+
+Toggle.Activated:Connect(SmoothShow)
+
+RunService.Stepped:Connect(function()
+    local char = LocalPlayer.Character
+    if char then
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum and AntiRagdollEnabled then
+            if hum:GetState() == Enum.HumanoidStateType.Physics or hum:GetState() == Enum.HumanoidStateType.Ragdoll then
+                hum:ChangeState(Enum.HumanoidStateType.GettingUp)
+            end
+        end
+    end
+end)
+
 local Dragging = false
-local DragStart
-local StartPosition
+local DragStart = Vector3.new()
+local StartPosition = UDim2.new()
+local CurrentPos = Main.Position
+local TargetPos = Main.Position
 
 Top.InputBegan:Connect(function(Input)
     if Input.UserInputType == Enum.UserInputType.MouseButton1
@@ -168,6 +276,11 @@ Top.InputBegan:Connect(function(Input)
         Dragging = true
         DragStart = Input.Position
         StartPosition = Main.Position
+        Input.Changed:Connect(function()
+            if Input.UserInputState == Enum.UserInputState.End then
+                Dragging = false
+            end
+        end)
     end
 end)
 
@@ -178,7 +291,7 @@ UserInputService.InputChanged:Connect(function(Input)
     ) then
         local Delta = Input.Position - DragStart
 
-        Main.Position = UDim2.new(
+        TargetPos = UDim2.new(
             StartPosition.X.Scale,
             StartPosition.X.Offset + Delta.X,
             StartPosition.Y.Scale,
@@ -191,5 +304,19 @@ UserInputService.InputEnded:Connect(function(Input)
     if Input.UserInputType == Enum.UserInputType.MouseButton1
         or Input.UserInputType == Enum.UserInputType.Touch then
         Dragging = false
+    end
+end)
+
+RunService.RenderStepped:Connect(function(dt)
+    CurrentPos = UDim2.new(
+        CurrentPos.X.Scale,
+        CurrentPos.X.Offset + (TargetPos.X.Offset - CurrentPos.X.Offset) * math.clamp(dt * 12, 0, 1),
+        CurrentPos.Y.Scale,
+        CurrentPos.Y.Offset + (TargetPos.Y.Offset - CurrentPos.Y.Offset) * math.clamp(dt * 12, 0, 1)
+    )
+    if Dragging then
+        Main.Position = CurrentPos
+    else
+        TargetPos = Main.Position
     end
 end)
