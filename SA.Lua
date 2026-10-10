@@ -97,7 +97,7 @@ Logo.Name = "Logo"
 Logo.Size = UDim2.fromOffset(300, 90)
 Logo.Position = UDim2.new(0.5, -150, 0, 6)
 Logo.BackgroundTransparency = 1
-Logo.Image = "rbxthumb://type=Asset&w=420&h=420&id=106392588203843"
+Logo.Image = "rbxassetid://"
 Logo.ScaleType = Enum.ScaleType.Fit
 Logo.ZIndex = 11
 Logo.Parent = Top
