@@ -104,9 +104,9 @@ Logo.Parent = Top
 
 local ActionButton = Instance.new("ImageButton")
 ActionButton.Name = "ActionButton"
-ActionButton.Size = UDim2.fromOffset(190, 58)
+ActionButton.Size = UDim2.fromOffset(210, 64)
 ActionButton.AnchorPoint = Vector2.new(0.5, 0.5)
-ActionButton.Position = UDim2.new(0.5, 0, 0.5, 43)
+ActionButton.Position = UDim2.new(0.5, 0, 0.5, 53)
 ActionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ActionButton.BackgroundTransparency = 0.25
 ActionButton.BorderSizePixel = 0
@@ -127,6 +127,7 @@ ButtonTitle.BackgroundTransparency = 1
 ButtonTitle.Image = "rbxthumb://type=Asset&w=420&h=420&id=85925198534817"
 ButtonTitle.ImageTransparency = 0
 ButtonTitle.ScaleType = Enum.ScaleType.Stretch
+ButtonTitle.ResampleMode = Enum.ResamplerMode.Pixelated
 ButtonTitle.ZIndex = 16
 ButtonTitle.Parent = ActionButton
 
