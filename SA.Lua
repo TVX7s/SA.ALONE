@@ -109,7 +109,7 @@ ActionButton.AnchorPoint = Vector2.new(0.5, 0.5)
 ActionButton.Position = UDim2.new(0.5, 0, 0.5, 43)
 ActionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ActionButton.BorderSizePixel = 0
-ActionButton.Image = "rbxthumb://type=Asset&w=420&h=420&id=140450863774043"
+ActionButton.Image = "rbxthumb://type=Asset&w=420&h=420&id=127761301065065"
 ActionButton.ScaleType = Enum.ScaleType.Crop
 ActionButton.AutoButtonColor = false
 ActionButton.ZIndex = 15
