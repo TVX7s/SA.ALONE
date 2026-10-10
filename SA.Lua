@@ -37,7 +37,7 @@ local BackgroundImage = Instance.new("ImageLabel")
 BackgroundImage.Name = "FireBackground"
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
 BackgroundImage.BackgroundTransparency = 1
-BackgroundImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=137972128814884"
+BackgroundImage.Image = "rbxthumb://type=Asset&w=420&h=420&id=128231336801420"
 BackgroundImage.ScaleType = Enum.ScaleType.Crop
 BackgroundImage.ZIndex = 1
 BackgroundImage.Parent = Main
